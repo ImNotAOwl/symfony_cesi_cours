@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Secteur index{% endblock %}
+
+{% block body %}
+    <h1>Secteur index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Libelle</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for secteur in secteurs %}
+            <tr>
+                <td>{{ secteur.id }}</td>
+                <td>{{ secteur.libelle }}</td>
+                <td>
+                    <a href="{{ path('app_secteur_show', {'id': secteur.id}) }}">show</a>
+                    <a href="{{ path('app_secteur_edit', {'id': secteur.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_secteur_new') }}">Create new</a>
+{% endblock %}

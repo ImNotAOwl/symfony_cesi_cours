@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calcul opération élémentaire</title>
+</head>
+<body>
+<p>Opérande 1 : {{ v1 }}</p>
+<p>Opérande 2 : {{ v2 }}</p>
+<p>Opérateur : {{ operateur }}</p>
+
+{% if operateur == 'plus' %}
+    <p>Addition, résultat :
+    {% set res = operations_service.add(v1,v2) %}
+    {{ res }}
+    </p>
+    <p>
+    {#{{
+    render(controller('App\\Controller\\OperationsController::calcul',
+        {'nb1':v1,'nb2':v2, 'op':operateur}))
+    }}#}
+    </p>
+{% elseif operateur == 'moins' %}
+    <p>Soustraction, résultat :
+    {% set res = operations_service.diff(v1,v2) %}
+    {{ res }}
+    </p>
+{% elseif operateur == 'mult' %}
+    <p>Multiplication, résultat :
+    {% set res = operations_service.mult(v1,v2) %}
+    {{ res }}
+    </p>
+{% elseif operateur == 'div' %}
+    <p>Division, résultat :
+    {% if v2 == 0 %}
+        Division par zéro Impossible
+    {% else %}
+        {% set res = operations_service.div(v1,v2) %}
+        {{ res }}
+        </p>
+    {% endif %}
+{% else %}
+    <p>Mauvais opérateur</p>
+{% endif %}
+
+<p>Résultat par appel de la méthode calcul du service :
+{% set res = operations_service.calcul(v1,v2,operateur) %}
+{{ res }}</p>
+</body>
+</html>

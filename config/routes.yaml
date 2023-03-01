@@ -1,3 +1,15 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+
+ope_yaml_home:
+    path: /ope/yaml/home
+    controller: App\Controller\OperationsController::yamlHome
+
+ope_yaml_calcul:
+    path: /ope/yaml/{val1}/{op}/{val2}
+    controller: App\Controller\OperationsController::calculYaml
+    requirements:
+        val1: -?\d+\.?\d*
+        op: plus|moins|mult|div
+        val2: -?\d+\.?\d*

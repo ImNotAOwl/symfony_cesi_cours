@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SecteursStructures index{% endblock %}
+
+{% block body %}
+    <h1>SecteursStructures index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Structures</th>
+                <th>Secteurs</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for secteurs_structure in secteurs_structures %}
+            <tr>
+                <td>{{ secteurs_structure.id }}</td>
+                <td>{{ secteurs_structure.idStructure.nom }}</td>
+                <td>{{ secteurs_structure.idSecteur.libelle }}</td>
+                <td>
+                    <a href="{{ path('app_secteurs_structures_show', {'id': secteurs_structure.id}) }}">show</a>
+                    <a href="{{ path('app_secteurs_structures_edit', {'id': secteurs_structure.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_secteurs_structures_new') }}">Create new</a>
+{% endblock %}

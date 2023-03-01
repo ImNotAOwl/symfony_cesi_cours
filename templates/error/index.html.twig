@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Erreur{% endblock %}
+
+{% block body %}
+<main id="main">
+
+     <section class="single-post-content">
+        <div class="container">
+            <div class="row">
+                <div class="col mt-4 alert-danger py-5 px-3 text-center">
+                    {% if app.request.attributes.get('exception').statusCode is defined %}
+                        <h1 class="display-2 fw-bold">ERREUR {{ app.request.attributes.get('exception').statusCode() }}</h1>
+                        <h5>{{ app.request.attributes.get('exception').getMessage() }}</h5>
+                    {% elseif app.request.attributes.get('exception').code is defined %}
+                        <h1 class="display-2 fw-bold">ERREUR {{ app.request.attributes.get('exception').code() }}</h1>
+                        <h5>{{ app.request.attributes.get('exception').getMessage() }}</h5>
+                    {% else %}
+                        <h1 class="display-2 fw-bold">ERREUR INCONNU</h1>
+                        <h5>Une erreur est survenue <a href="www.google.fr">GOOGLE</a></h5>
+                    {% endif %}
+                </div>
+
+                <div class="mt-3 text-center">
+                    {# <a class="btn btn-primary p-3 lead" href="{{ path('app_home') }}">Page d'accueil</a> #}
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+{% endblock %}

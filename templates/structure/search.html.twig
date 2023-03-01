@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Structure{% endblock %}
+
+{% block body %}
+    <h1>Structure</h1>
+
+    {{ include('structure/_search_form.html.twig', {'button_label': 'Chercher'}) }}
+
+    <a href="{{ path('app_structure_index') }}">back to list</a>
+{% endblock %}

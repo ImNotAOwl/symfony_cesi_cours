@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dirigeant index{% endblock %}
+
+{% block body %}
+    <h1>Dirigeant index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Ddn</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for dirigeant in dirigeants %}
+            <tr>
+                <td>{{ dirigeant.id }}</td>
+                <td>{{ dirigeant.nom }}</td>
+                <td>{{ dirigeant.prenom }}</td>
+                <td>{{ dirigeant.ddn ? dirigeant.ddn|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_dirigeant_show', {'id': dirigeant.id}) }}">show</a>
+                    <a href="{{ path('app_dirigeant_edit', {'id': dirigeant.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_dirigeant_new') }}">Create new</a>
+{% endblock %}
